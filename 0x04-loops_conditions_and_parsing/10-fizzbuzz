@@ -4,17 +4,17 @@
 x=1
 while [ $x -le 100 ]
 do
-	if [[ 0 -eq "($x%3) + ($x%5)" ]] 
+	if (( x % 3 == 0 && x % 5 == 0 )) 
 	then
 		echo "Fizzbuzz"
-	elif [[ 0 -eq "($x%5)" ]]
+	elif (( x % 5 == 0 ))
 	then
 		echo "Buzz"
-	elif [[ 0 -eq "($x%3)" ]]
+	elif (( x % 3 == 0 ))
 	then
 		echo "Fizz"
 	else
 		echo "$x"
 	fi	
-	x=$(( $x + 1 ))
+	x=$(( x + 1 ))
 done
