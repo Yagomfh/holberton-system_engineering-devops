@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#Displays numbers from 1 to 100 - Fizz Buzz Challenge
+
+x=1
+while [ $x -le 100 ]
+do
+	if [[ 0 -eq "($x%3) + ($x%5)" ]] 
+	then
+		echo "Fizzbuzz"
+	elif [[ 0 -eq "($x%5)" ]]
+	then
+		echo "Buzz"
+	elif [[ 0 -eq "($x%3)" ]]
+	then
+		echo "Fizz"
+	else
+		echo "$x"
+	fi	
+	x=$(( $x + 1 ))
+done

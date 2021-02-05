@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Script that displays the content of the current directory in a list format
+
+for elem in *
+do
+	echo "$elem" | cut -f2 -d"-"
+done
