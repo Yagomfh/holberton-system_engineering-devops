@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Set custom header to know which server is serving requests
+hs=$HOSTNAME
+sudo sed -i "s/sendfile on;/sendfile on;\n	add_header X-Served-By $hs;/" /etc/nginx/nginx.conf
+sudo service nginx restart

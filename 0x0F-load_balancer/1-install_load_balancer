@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Installs HAproxy and configures it with roundrobin, manageable via init scripts, and configured with the right host names
+
+# Install HAproxy 1.6
+sudo apt-get update
+sudo apt-get install -y haproxy=1.6\*
+
+# Manage Haproxy via init script
+sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
+
+# Round Robin for two servers
+config="frontend web-frontend\n\tbind *:80\n\tmode http\n\tdefault_backend web-backend\n\nbackend web-backend\n\tbalance roundrobin\n\tmode http\n\toption forwardfor\n\tserver 2483-web-01 34.74.48.216:80 check\n\tserver 2483-web-02 34.74.217.44:80 check\n"
+echo -e "$config" | sudo tee -a /etc/haproxy/haproxy.cfg
+sudo service haproxy reload
+sudo service haproxy restart
