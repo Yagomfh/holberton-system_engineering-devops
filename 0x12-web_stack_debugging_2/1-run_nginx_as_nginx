@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 #Server runs as nginx user rather than root
+pkill -f apache2
 sudo sed -i '1s/^/user nginx;\n/' /etc/nginx/nginx.conf
 sudo service nginx restart
