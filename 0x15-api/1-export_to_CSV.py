@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Gather data from an API"""
+import csv
+import json
 import requests
 import sys
-import json
-import csv
 
 
 if __name__ == "__main__":
