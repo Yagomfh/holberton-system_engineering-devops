@@ -12,9 +12,14 @@ if __name__ == "__main__":
     employee = json.loads(requests.get(call_url).text)
     call_url = url + 'todos/?userId=' + user
     total_tasks = json.loads(requests.get(call_url).text)
-    call_url = url + 'todos/?userId=' + user + '&completed=true'
-    done_tasks = json.loads(requests.get(call_url).text)
-    print("Employee {} is done with tasks({}/{}):\
-".format(employee[0]['name'], len(done_tasks), len(total_tasks)))
-    for task in done_tasks:
-        print("\t{}".format(task['title']))
+
+    tasks = []
+    data = {user: tasks}
+
+    for task in total_tasks:
+        tmp = {'task': task['title'],
+               'completed': task['completed'],
+               'username': employee[0]['username']}
+        tasks.append(tmp)
+    with open(user + ".json", "w") as outfile:
+        json.dump(data, outfile)
