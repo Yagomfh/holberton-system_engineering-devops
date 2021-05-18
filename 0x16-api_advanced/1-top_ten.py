@@ -12,7 +12,7 @@ def top_ten(subreddit):
            subreddit +
            "/hot/.json?count=10&limit=10")
     response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code != 302:
-        for elem in response.json()['data']['children']:
-            print(elem['data']['title'])
-    return None
+    if response.status_code != 200:
+        return None
+    for elem in response.json()['data']['children']:
+        print(elem['data']['title'])
